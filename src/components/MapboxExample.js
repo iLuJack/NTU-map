@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapboxExample = () => {
@@ -81,6 +83,14 @@ const MapboxExample = () => {
           }
         },
         labelLayerId
+      );
+
+      mapRef.current.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+          language: 'zh-TW'
+        })
       );
 
       // Add markers for each location
